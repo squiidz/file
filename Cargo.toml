@@ -1,0 +1,9 @@
+[package]
+name = "lock"
+version = "0.1.0"
+authors = ["jchaput <piinkyz05@gmail.com>"]
+
+[dependencies]
+serde = "0.8.17"
+serde_json = "0.8.3"
+serde_derive = "0.8.17"
