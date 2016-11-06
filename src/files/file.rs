@@ -15,12 +15,12 @@ enum FileType {
 
 #[derive(Serialize, Deserialize)]
 pub struct File {
+    #[serde(rename = "name")]
+    file_name: String,
     #[serde(rename = "type")]
     file_type: FileType,
     #[serde(rename = "path")]
     file_path: PathBuf,
-    #[serde(rename = "name")]
-    file_name: String,
     #[serde(rename = "meta")]
     file_meta: Meta,
 }
