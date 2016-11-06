@@ -7,3 +7,4 @@ authors = ["jchaput <piinkyz05@gmail.com>"]
 serde = "0.8.17"
 serde_json = "0.8.3"
 serde_derive = "0.8.17"
+chrono = { version = "0.2.25", features = ["serde", "rustc-serialize"] }
