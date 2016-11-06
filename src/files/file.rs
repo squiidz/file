@@ -1,6 +1,7 @@
 use std::fs::{read_dir};
 use std::path::{PathBuf, Path};
 use std::convert::From;
+use std::io::{Error};
 
 use super::meta::{Meta};
 
@@ -47,10 +48,10 @@ fn render_files_list(file_list: Vec<File>) {
     }
 }
 
-pub fn list_files(path: &Path) -> Option<Vec<File>> {
+pub fn list_files(path: &Path) -> Result<Vec<File>, Error> {
     let files = match read_dir(path) {
         Ok(files) => files,
-        Err(_) => return None,
+        Err(e) => return Err(e),
     };
     let mut f_name = Vec::<File>::new();
     for file in files {
@@ -58,8 +59,8 @@ pub fn list_files(path: &Path) -> Option<Vec<File>> {
             Ok(f) => {
                 f_name.push(File::from(f.path()));
             },
-            Err(_) => continue,
+            Err(e) => return Err(e),
         }
     }
-    Some(f_name)
+    Ok(f_name)
 }

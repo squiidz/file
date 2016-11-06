@@ -15,8 +15,8 @@ fn main() {
     };
 
     let file_names = match list_files(pwd.as_path()) {
-            Some(v) => v,
-            None => return,
+            Ok(v) => v,
+            Err(e) => panic!(e),
     };
 
     println!("{}", serde_json::to_string_pretty(&file_names).unwrap());
