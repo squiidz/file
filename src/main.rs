@@ -4,8 +4,9 @@ extern crate serde_derive;
 extern crate serde_json;
 extern crate chrono;
 
-use std::env;
 mod files;
+use std::env;
+use files::file::list_files;
 
 fn main() {
     let pwd = match env::current_dir() {
@@ -13,7 +14,7 @@ fn main() {
         Err(_) => return,
     };
 
-    let file_names = match files::list_files(pwd.as_path()) {
+    let file_names = match list_files(pwd.as_path()) {
             Some(v) => v,
             None => return,
     };
