@@ -49,16 +49,11 @@ fn render_files_list(file_list: Vec<File>) {
 }
 
 pub fn list_files(path: &Path) -> Result<Vec<File>, Error> {
-    let files = match read_dir(path) {
-        Ok(files) => files,
-        Err(e) => return Err(e),
-    };
+    let files = try!(read_dir(path)); 
     let mut f_name = Vec::<File>::new();
     for file in files {
         match file {
-            Ok(f) => {
-                f_name.push(File::from(f.path()));
-            },
+            Ok(f) => f_name.push(File::from(f.path())),
             Err(e) => return Err(e),
         }
     }
